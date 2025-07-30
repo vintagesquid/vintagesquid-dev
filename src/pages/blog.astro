@@ -1,18 +1,21 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-const allPosts = await getCollection('blog')
+
+const allPosts = await getCollection('blog');
 ---
 
 <Layout>
   <h1>My Blog <span style='font-size: 12px;'>powered by Astro</span></h1>
-  <p>This is where I will post about my journey of a developer.</p>
+  <p>posts about my journey of a developer.</p>
 
-  {
-    allPosts.map((post) => (
-      <li>
-        <a href={`/posts/${post.id}`}>{post.data.title}</a>
-      </li>
-    ))
-  }
+  <ul>
+    {
+      allPosts.map(post => (
+        <li>
+          <a href={`/posts/${post.id}`}>{post.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
