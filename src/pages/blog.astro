@@ -1,17 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
 
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection("blog");
 ---
 
 <Layout>
-  <h1>My Blog <span style='font-size: 12px;'>powered by Astro</span></h1>
+  <h1>My Blog <span style="font-size: 12px;">powered by Astro</span></h1>
   <p>posts about my journey of a developer.</p>
 
   <ul>
     {
-      allPosts.map(post => (
+      allPosts.map((post) => (
         <li>
           <a href={`/posts/${post.id}`}>{post.data.title}</a>
         </li>
