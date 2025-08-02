@@ -1,8 +1,47 @@
 ---
-import Welcome from "../components/Welcome.astro";
+import Splash from "../components/Splash.astro";
 import Layout from "../layouts/Layout.astro";
+import VintageSquidNoBG from "../assets/vintagesquid-no-bg.png";
+import { getImage } from "astro:assets";
+
+const optimizedBackground = await getImage({
+  src: VintageSquidNoBG,
+  format: "webp",
+});
 ---
 
 <Layout>
-  <Welcome />
+  <div
+    class="image"
+    style={{ backgroundImage: `url(${optimizedBackground.src})` }}
+  >
+  </div>
+  <div class="main-container">
+    <Splash />
+  </div>
 </Layout>
+
+<style>
+  .image {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-position: center left;
+    background-size: max(500px, 66vw);
+    background-repeat: no-repeat;
+    @media screen and (min-width: 400px) {
+      background-position: center left max(0px, 33vw);
+    }
+    @media screen and (min-width: 1024px) {
+      background-position: center left;
+    }
+  }
+  .main-container {
+    display: grid;
+    place-items: center start;
+    @media screen and (min-width: 1024px) {
+      place-items: center end;
+    }
+    height: 100%;
+  }
+</style>

@@ -1,6 +1,8 @@
 :root {
   --color-base-content: #fff;
   --color-base: #1f1f1f;
+  --color-base-100: #101010;
+  --color-base-200: #0d0d0d;
   --color-primary: #ffa500;
 }
 
