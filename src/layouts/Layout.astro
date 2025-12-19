@@ -15,7 +15,7 @@ import "../styles/theme.css";
   </head>
 
   <body>
-    <Navigation />
+    {Astro.url.pathname !== "/" && <Navigation />}
     <main>
       <slot />
     </main>
