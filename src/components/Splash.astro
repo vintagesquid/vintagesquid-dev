@@ -2,7 +2,7 @@
 import Navigation from "./Navigation.astro";
 ---
 
-<div>
+<div class="splash-container">
   <div class="navigation-wrapper">
     <Navigation />
   </div>
@@ -10,12 +10,19 @@ import Navigation from "./Navigation.astro";
   <h1 class="heading">vintagesquid.dev</h1>
 
   <div class="about-me">
-    <h2>My name is Bálint. I like vintage stuff and squids.</h2>
-    <p>I write code that breaks... reality.</p>
+    <h2>My name is Bálint.</h2>
+    <h3>I like vintage stuff and squids.</h3>
+    <p>I write code occasonaly.</p>
   </div>
 </div>
 
 <style>
+  .splash-container {
+    @media screen and (min-width: 1024px) {
+      width: 40vw;
+    }
+  }
+
   * {
     line-height: 1.5;
   }
