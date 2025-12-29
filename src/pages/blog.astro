@@ -6,16 +6,53 @@ const allPosts = await getCollection("blog");
 ---
 
 <Layout>
-  <h1>My Blog <span style="font-size: 12px;">powered by Astro</span></h1>
-  <p>posts about my journey of a developer.</p>
+  <div class="heading">
+    <h1>My Blog <span style="font-size: 12px;">powered by Astro</span></h1>
+    <p>posts about my journey of a developer.</p>
+  </div>
 
   <ul>
     {
       allPosts.map((post) => (
         <li>
-          <a href={`/posts/${post.id}`}>{post.data.title}</a>
+          <a href={`/posts/${post.id}`}>
+            <img
+              src={post.data.image.url}
+              alt={post.data.image.alt}
+              width="600"
+            />
+            <h2>{post.data.title}</h2>{" "}
+          </a>
         </li>
       ))
     }
   </ul>
 </Layout>
+
+<style>
+  .heading {
+    margin-bottom: 2rem;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px white solid;
+    border-radius: 2px;
+    h2 {
+      padding: 1rem;
+    }
+  }
+
+  img {
+    z-index: -1;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>

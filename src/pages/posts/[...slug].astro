@@ -1,9 +1,11 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import PrettyMarkdown from "../../components/PrettyMarkdown.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
+
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
@@ -15,5 +17,47 @@ const { Content } = await render(post);
 ---
 
 <Layout>
-  <Content />
+  <div class="container">
+    <div class="title">
+      <h1>{post.data.title}</h1>
+    </div>
+
+    <div class="metadata">
+      <span>
+        {post.data.pubDate.toISOString().split("T")[0]}
+      </span>
+      <span class="tags"> tags: {post.data.tags.join(" | ")}</span>
+    </div>
+
+    <hr />
+
+    <PrettyMarkdown>
+      <img src={post.data.image.url} alt={post.data.image.alt} />
+      <Content />
+    </PrettyMarkdown>
+  </div>
 </Layout>
+
+<style>
+  .container {
+    max-width: 1024px;
+    margin-inline: auto;
+  }
+  .title {
+    margin-bottom: 0.5rem;
+  }
+  .metadata {
+    opacity: 66%;
+  }
+  hr {
+    margin-block: 1rem;
+    height: 1px;
+    background-color: var(--color-base-content);
+  }
+  img {
+    max-height: 50vh;
+    max-width: 100%;
+    margin-inline: auto;
+    display: block;
+  }
+</style>
